@@ -1,0 +1,87 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Green Header -->
+    <TextView
+        android:id="@+id/header"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#4CAF50"
+        android:padding="16dp"
+        android:text="Username"
+        android:textColor="#FFFFFF"
+        android:textSize="20sp"
+        app:layout_constraintWidth_percent="0.7"
+        app:layout_constraintHeight_percent="0.3"
+        app:layout_constraintBottom_toTopOf="@+id/photos_section"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <!-- Photos Section -->
+    <LinearLayout
+        android:id="@+id/photos_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@android:color/white"
+        app:layout_constraintBottom_toTopOf="@+id/map_section"
+        app:layout_constraintEnd_toEndOf="@+id/header"
+        app:layout_constraintStart_toStartOf="@+id/header"
+        app:layout_constraintTop_toBottomOf="@+id/header">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_photos" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Photos" />
+    </LinearLayout>
+
+    <!-- Map Section -->
+    <LinearLayout
+        android:id="@+id/map_section"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/photos_section"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        android:background="@android:color/white"
+        app:layout_constraintEnd_toEndOf="@+id/photos_section"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/photos_section">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_map" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Map" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/white_section"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_below="@id/photos_section"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/map_section"
+        app:layout_constraintStart_toStartOf="@+id/map_section"
+        app:layout_constraintTop_toBottomOf="@+id/map_section"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
