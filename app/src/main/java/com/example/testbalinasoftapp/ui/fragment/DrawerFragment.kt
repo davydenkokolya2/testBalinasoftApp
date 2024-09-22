@@ -5,11 +5,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.testbalinasoftapp.databinding.FragmentDrawerBinding
 import com.example.testbalinasoftapp.domain.DrawerType
 import com.example.testbalinasoftapp.domain.FragmentType
+import com.example.testbalinasoftapp.ui.viewmodel.AuthViewModel
+import com.example.testbalinasoftapp.ui.viewmodel.DrawerViewModel
 import com.example.testbalinasoftapp.ui.viewmodel.HostViewModel
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class DrawerFragment : Fragment() {
@@ -18,18 +21,33 @@ class DrawerFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val hostViewModel: HostViewModel by viewModel()
+    private val drawerViewModel: DrawerViewModel by viewModel()
+    private val authViewModel: AuthViewModel by viewModel()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentDrawerBinding.inflate(inflater, container, false)
+
+        authViewModel.loginResult.observe(viewLifecycleOwner) { result ->
+            result.onSuccess { loginResponse ->
+                lifecycleScope.launch {
+                    drawerViewModel.loadUserName(loginResponse.data.userId)
+                }
+            }
+        }
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        lifecycleScope.launch {
+            drawerViewModel.userName.collect { username ->
+                binding.username.text = username
+            }
+        }
         binding.mapSection.setOnClickListener {
             hostViewModel.switchFragment(FragmentType.MAP)
             hostViewModel.switchDrawerFragment(DrawerType.CLOSE)
@@ -39,6 +57,8 @@ class DrawerFragment : Fragment() {
             hostViewModel.switchFragment(FragmentType.GALLERY)
             hostViewModel.switchDrawerFragment(DrawerType.CLOSE)
         }
+
+
     }
 
     override fun onDestroyView() {

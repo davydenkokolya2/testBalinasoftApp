@@ -67,6 +67,7 @@ dependencies {
     // Retrofit для сетевых запросов
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
+    implementation(libs.gson)
 
     // Coroutines для асинхронных задач
     implementation(libs.kotlinx.coroutines.core)
