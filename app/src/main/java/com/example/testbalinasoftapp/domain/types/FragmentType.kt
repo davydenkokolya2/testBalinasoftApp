@@ -1,4 +1,4 @@
-package com.example.testbalinasoftapp.domain
+package com.example.testbalinasoftapp.domain.types
 
 enum class FragmentType {
     AUTH,

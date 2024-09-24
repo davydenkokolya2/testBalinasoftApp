@@ -6,10 +6,13 @@ import androidx.room.RoomDatabase
 import com.example.testbalinasoftapp.data.dao.UserDao
 import com.example.testbalinasoftapp.data.models.UserEntity
 import android.content.Context
+import com.example.testbalinasoftapp.data.dao.ImageDao
+import com.example.testbalinasoftapp.data.models.ImageEntity
 
-@Database(entities = [UserEntity::class], version = 1)
+@Database(entities = [UserEntity::class, ImageEntity::class], version = 2)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao
+    abstract fun imageDao(): ImageDao
 
     companion object {
         @Volatile

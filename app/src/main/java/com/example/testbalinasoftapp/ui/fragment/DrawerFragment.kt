@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.example.testbalinasoftapp.databinding.FragmentDrawerBinding
-import com.example.testbalinasoftapp.domain.DrawerType
-import com.example.testbalinasoftapp.domain.FragmentType
+import com.example.testbalinasoftapp.domain.types.DrawerType
+import com.example.testbalinasoftapp.domain.types.FragmentType
 import com.example.testbalinasoftapp.ui.viewmodel.AuthViewModel
 import com.example.testbalinasoftapp.ui.viewmodel.DrawerViewModel
 import com.example.testbalinasoftapp.ui.viewmodel.HostViewModel

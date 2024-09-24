@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">testBalinasoftApp</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="login">Login</string>
+    <string name="photos">Photos</string>
+    <string name="map">Map</string>
+    <string name="date">date</string>
+    <string name="_01_01_2024">01.01.2024</string>
 </resources>

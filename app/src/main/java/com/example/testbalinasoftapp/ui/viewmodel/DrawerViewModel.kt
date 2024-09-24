@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class DrawerViewModel(private val userUseCase: UserUseCase) : ViewModel() {
-    private val _userName = MutableStateFlow<String>("")
+    private val _userName = MutableStateFlow("")
     val userName: StateFlow<String> = _userName
 
     suspend fun loadUserName(userId: Int) {

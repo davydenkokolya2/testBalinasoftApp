@@ -5,16 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.viewModelScope
-import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
 import com.example.testbalinasoftapp.databinding.FragmentPhotoDetailBinding
-import com.example.testbalinasoftapp.domain.ToolbarIconState
+import com.example.testbalinasoftapp.domain.Unix.convertUnixToDateWithTime
+import com.example.testbalinasoftapp.domain.types.ToolbarIconState
 import com.example.testbalinasoftapp.ui.viewmodel.HostViewModel
 import com.example.testbalinasoftapp.ui.viewmodel.PhotoDetailViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -42,10 +39,10 @@ class PhotoDetailFragment : Fragment() {
             photoDetailViewModel.currentImage.collect {item ->
                 if (item != null) {
                     Glide.with(binding.ivAvatar.context)
-                        .load(item.imageUrl)
+                        .load(item.url)
                         .into(binding.ivAvatar)
 
-                    binding.tvDate.text = item.date
+                    binding.tvDate.text = convertUnixToDateWithTime(item.date)
                 }
             }
         }

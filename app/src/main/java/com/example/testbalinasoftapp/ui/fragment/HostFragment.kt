@@ -1,5 +1,4 @@
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +9,9 @@ import androidx.fragment.app.commit
 import androidx.lifecycle.lifecycleScope
 import com.example.testbalinasoftapp.R
 import com.example.testbalinasoftapp.databinding.FragmentHostBinding
-import com.example.testbalinasoftapp.domain.DrawerType
-import com.example.testbalinasoftapp.domain.FragmentType
-import com.example.testbalinasoftapp.domain.ToolbarIconState
+import com.example.testbalinasoftapp.domain.types.DrawerType
+import com.example.testbalinasoftapp.domain.types.FragmentType
+import com.example.testbalinasoftapp.domain.types.ToolbarIconState
 import com.example.testbalinasoftapp.ui.fragment.AuthFragment
 import com.example.testbalinasoftapp.ui.fragment.CameraFragment
 import com.example.testbalinasoftapp.ui.fragment.DrawerFragment
@@ -48,7 +47,6 @@ class HostFragment : Fragment() {
 
         lifecycleScope.launch {
             hostViewModel.currentFragment.collect { fragmentType ->
-                Log.i("123", fragmentType.toString())
                 when (fragmentType) {
                     FragmentType.AUTH -> showAuthFragment()
                     FragmentType.MAP -> showMapFragment()
@@ -76,7 +74,6 @@ class HostFragment : Fragment() {
 
         (activity as AppCompatActivity).setSupportActionBar(binding.toolbar)
 
-        // Скрытие заголовка
         (activity as AppCompatActivity).supportActionBar?.setDisplayShowTitleEnabled(false)
 
         binding.toolbar.setNavigationOnClickListener {
@@ -100,14 +97,14 @@ class HostFragment : Fragment() {
 
             ToolbarIconState.MENU -> {
                 binding.toolbar.navigationIcon =
-                    ContextCompat.getDrawable(requireActivity(), R.drawable.ic_menu)  // Три полоски
+                    ContextCompat.getDrawable(requireActivity(), R.drawable.ic_menu)
             }
 
             ToolbarIconState.BACK -> {
                 binding.toolbar.navigationIcon = ContextCompat.getDrawable(
                     requireActivity(),
                     R.drawable.ic_back
-                ) // Стрелка назад
+                )
             }
         }
     }
@@ -160,17 +157,21 @@ class HostFragment : Fragment() {
     }
 
     private fun showGalleryFragment() {
-        val galleryFragment = GalleryFragment()
-        Log.i("123", "123")
-        parentFragmentManager.commit {
-            replace(R.id.fragmentContainer, galleryFragment)
-        }
-    }
+        val existingFragment = parentFragmentManager.findFragmentByTag("GalleryFragment")
 
-    private fun replaceFragment(fragment: Fragment) {
-        val transaction = parentFragmentManager.beginTransaction()
-        transaction.replace(binding.fragmentContainer.id, fragment)
-        transaction.commit()
+        if (existingFragment != null) {
+            parentFragmentManager.commit {
+                parentFragmentManager.fragments.forEach { fragment ->
+                    if (fragment != existingFragment) hide(fragment)
+                }
+                show(existingFragment)
+            }
+        } else {
+            val galleryFragment = GalleryFragment()
+            parentFragmentManager.commit {
+                replace(R.id.fragmentContainer, galleryFragment, "GalleryFragment")
+            }
+        }
     }
 
     override fun onDestroyView() {

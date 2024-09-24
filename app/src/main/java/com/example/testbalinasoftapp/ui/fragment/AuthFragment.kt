@@ -8,7 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.example.testbalinasoftapp.data.models.LoginResponse
 import com.example.testbalinasoftapp.databinding.FragmentAuthBinding
-import com.example.testbalinasoftapp.domain.FragmentType
+import com.example.testbalinasoftapp.domain.types.FragmentType
 import com.example.testbalinasoftapp.ui.viewmodel.AuthViewModel
 import com.example.testbalinasoftapp.ui.viewmodel.HostViewModel
 import com.google.android.material.tabs.TabLayout
@@ -33,9 +33,6 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val toolbar = binding.toolbar
-        val editUsername = binding.editUsername
-        val editPassword = binding.editPassword
         val editConfirmPassword = binding.editConfirmPassword
         val buttonSubmit = binding.buttonSubmit
         val tabLayout = binding.tabLayout

@@ -1,23 +1,20 @@
 package com.example.testbalinasoftapp.ui.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.testbalinasoftapp.domain.DrawerType
-import com.example.testbalinasoftapp.domain.FragmentType
-import com.example.testbalinasoftapp.domain.ToolbarIconState
-import com.example.testbalinasoftapp.ui.fragment.DrawerFragment
+import com.example.testbalinasoftapp.domain.types.DrawerType
+import com.example.testbalinasoftapp.domain.types.FragmentType
+import com.example.testbalinasoftapp.domain.types.ToolbarIconState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class HostViewModel : ViewModel() {
-    // Состояние текущего фрагмента
-    private val _currentFragment = MutableStateFlow<FragmentType>(FragmentType.AUTH)
+    private val _currentFragment = MutableStateFlow(FragmentType.AUTH)
     val currentFragment: StateFlow<FragmentType> = _currentFragment
 
-    private val _toolbarNavigationIcon = MutableStateFlow<ToolbarIconState>(ToolbarIconState.NONE)
+    private val _toolbarNavigationIcon = MutableStateFlow(ToolbarIconState.NONE)
     val toolbarNavigationIcon: StateFlow<ToolbarIconState> = _toolbarNavigationIcon
 
-    private val _drawerFragment = MutableStateFlow<DrawerType>(DrawerType.CLOSE)
+    private val _drawerFragment = MutableStateFlow(DrawerType.CLOSE)
     val drawerFragment: StateFlow<DrawerType> = _drawerFragment
 
     fun updateToolbarIcon(state: ToolbarIconState) {

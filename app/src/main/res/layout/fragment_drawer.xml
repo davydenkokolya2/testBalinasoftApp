@@ -3,10 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Green Header -->
-
-
-    <!-- Photos Section -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/green_section"
         android:layout_width="0dp"
@@ -26,7 +22,7 @@
             android:layout_height="0dp"
             android:background="#4CAF50"
             android:padding="16dp"
-            android:text="Username"
+            android:text="@string/username"
             android:textColor="#FFFFFF"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -58,10 +54,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Photos" />
+            android:text="@string/photos" />
     </LinearLayout>
 
-    <!-- Map Section -->
     <LinearLayout
         android:id="@+id/map_section"
         android:layout_width="0dp"
@@ -83,7 +78,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="Map" />
+            android:text="@string/map" />
     </LinearLayout>
 
     <LinearLayout
